@@ -6,9 +6,9 @@ from selenium.webdriver.support import expected_conditions as EC
 #파일 생성
 with open("resume.txt", 'a') as writeResume:
     driver = webdriver.Chrome()
-    bookNum = 400664
+    bookNum = 1728348
 
-    while bookNum <= 400669:
+    while bookNum <= 1728349:
         url = f'https://joara.com/book/{bookNum}'
         driver.get(url)
 
