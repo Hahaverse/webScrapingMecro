@@ -1,18 +1,29 @@
 from selenium import webdriver
-from time import sleep
+from selenium.webdriver.common.by import By
+from selenium.webdriver.support.ui import WebDriverWait
+from selenium.webdriver.support import expected_conditions as EC
 
-driver = webdriver.Chrome()
-bookNum = 1728348
+#파일 생성
+with open("resume.txt", 'a') as writeResume:
+    driver = webdriver.Chrome()
+    bookNum = 400664
 
-while bookNum <= 1728349:
-    url = f'https://joara.com/book/{bookNum}'
-    driver.get(url)
+    while bookNum <= 400669:
+        url = f'https://joara.com/book/{bookNum}'
+        driver.get(url)
 
-    #웹 페이지 로딩 대기
-    sleep(1.3)
+        #웹 페이지 로딩 대기
+        wait = WebDriverWait(driver, 10)
+        wait.until(EC.presence_of_element_located((By.TAG_NAME, 'span')))
 
-    #title을 저장하고 출력
-    page_title = driver.title
+        page_title = driver.title
 
-    print(f"Book {bookNum} Title: {page_title}")
-    bookNum += 1
+        #파일에 저장
+        resume = f"Book Code: {bookNum}, Title: {page_title}\n"
+        writeResume.write(resume)
+
+        #print(f'Book Code: {bookNum}, Title: {page_title}')
+
+        bookNum += 1
+
+driver.quit()
