@@ -2,10 +2,16 @@ from selenium import webdriver
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
+from selenium.webdriver.chrome.service import Service
+from selenium.webdriver.chrome.options import Options
+from webdriver_manager.chrome import ChromeDriverManager
+
+#크롬 드라이버 자동 설치->최신 버전 설치->Service에 저장
+service = Service(executable_path=ChromeDriverManager().install())
+driver = webdriver.Chrome(service=service)
 
 #파일 생성
 with open("resume.txt", 'a') as writeResume:
-    driver = webdriver.Chrome()
     bookNum = 1728348
 
     while bookNum <= 1728349:
@@ -21,8 +27,6 @@ with open("resume.txt", 'a') as writeResume:
         #파일에 저장
         resume = f"Book Code: {bookNum}, Title: {page_title}\n"
         writeResume.write(resume)
-
-        #print(f'Book Code: {bookNum}, Title: {page_title}')
 
         bookNum += 1
 
