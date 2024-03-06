@@ -13,9 +13,9 @@ driver = webdriver.Chrome(service=service)
 
 #파일 생성
 with open("resume.txt", 'a') as writeResume:
-    bookNum = 400650
+    bookNum = 1728348
 
-    while bookNum <= 400669:
+    while bookNum <= 1728349:
         url = f'https://joara.com/book/{bookNum}'
         driver.get(url)
 
