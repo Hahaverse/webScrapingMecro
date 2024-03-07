@@ -22,7 +22,7 @@ with open("resume.txt", 'a') as writeResume:
         #웹 페이지 로딩 대기
         wait = WebDriverWait(driver, 10)
         wait.until(EC.presence_of_element_located((By.TAG_NAME, 'span')))
-        sleep(0.1)
+        sleep(0.2)
 
 
         page_title = driver.title
